@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BINTANG RAMBUTAN - SDN 2 Rambutan</title>
+    <title>BINTANG KELAS - SDN 2 Rambutan</title>
     
     <!-- Pustaka Font & Icon modern untuk anak-anak -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -114,7 +114,7 @@
                 <div id="secret-admin-trigger" class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-kebaikan mb-2 z-10 cursor-pointer avatar-float hover:scale-105 transition-transform">
                     <i class="fa-solid fa-graduation-cap text-5xl text-kebaikan"></i>
                 </div>
-                <h1 class="text-2xl font-black text-kebaikan-dark tracking-wide drop-shadow-sm text-center">BINTANG RAMBUTAN</h1>
+                <h1 class="text-2xl font-black text-kebaikan-dark tracking-wide drop-shadow-sm text-center">B</h1>
                 <p class="text-[10px] font-extrabold text-gray-500 bg-white border border-emerald-200 px-3 py-1 rounded-full mt-1 uppercase tracking-widest">Karakter Hebat Kelas 5</p>
                 <p class="text-xs font-bold text-gray-400 mt-1">SDN 2 Rambutan</p>
             </div>
@@ -902,8 +902,8 @@
                                 </div>
                             </div>
                             <div class="flex gap-1 shrink-0">
-                                <button onclick="bukaFormEditSiswa(${s.id})" class="w-7 h-7 bg-blue-900 text-blue-400 rounded-lg flex items-center justify-center hover:bg-blue-800"><i class="fa-solid fa-pen text-[10px]"></i></button>
-                                <button onclick="hapusSiswa(${s.id})" class="w-7 h-7 bg-red-950 text-red-400 rounded-lg flex items-center justify-center hover:bg-red-900"><i class="fa-solid fa-trash text-[10px]"></i></button>
+                                <button onclick="bukaFormEditSiswa('${s.id}')" class="w-7 h-7 bg-blue-900 text-blue-400 rounded-lg flex items-center justify-center hover:bg-blue-800"><i class="fa-solid fa-pen text-[10px]"></i></button>
+                                <button onclick="hapusSiswa('${s.id}')" class="w-7 h-7 bg-red-950 text-red-400 rounded-lg flex items-center justify-center hover:bg-red-900"><i class="fa-solid fa-trash text-[10px]"></i></button>
                             </div>
                         </div>
                     `;
@@ -1072,7 +1072,7 @@
                                 <h5 class="font-black text-white">${s.name}</h5>
                                 <p class="text-[9px] text-gray-400">Predikat: ${predikat}</p>
                             </div>
-                            <button onclick="bukaLembarCetakRapor(${s.id})" class="bg-teal-600 hover:bg-teal-500 text-white text-[9px] font-black px-3 py-1.5 rounded-lg border-b-2 border-teal-800">Cetak Rapor</button>
+                            <button onclick="bukaLembarCetakRapor('${s.id}')" class="bg-teal-600 hover:bg-teal-500 text-white text-[9px] font-black px-3 py-1.5 rounded-lg border-b-2 border-teal-800">Cetak Rapor</button>
                         </div>
                     `;
                 });
@@ -1096,7 +1096,7 @@
         }
 
         function bukaFormEditSiswa(id) {
-            const s = students.find(x => x.id === id);
+            const s = students.find(x => x.id.toString() === id.toString());
             if (!s) return;
             const box = document.getElementById('form-siswa-box');
             if (box) {
@@ -1213,7 +1213,7 @@
 
         async function hapusSiswa(id) {
             if (!confirm("Apakah Anda yakin ingin mengeluarkan siswa ini dari daftar?")) return;
-            const index = students.findIndex(x => x.id === id);
+            const index = students.findIndex(x => x.id.toString() === id.toString());
             if (index !== -1) {
                 students.splice(index, 1);
                 saveLocalBackup();
